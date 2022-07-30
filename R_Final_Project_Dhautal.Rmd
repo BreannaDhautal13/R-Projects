@@ -1,0 +1,53 @@
+---
+title: "R_ Final_Project_Dhautal"
+output: html_document
+date: "2022-07-30"
+---
+
+## R Final Project
+
+Which Factor Has the Biggest Impact on Marriages in the 21st Century?
+
+## Data Exploration:
+
+Here is a summary including mean, median, minimum, maximum, and the quartiles for all columns.
+
+```{r}
+affairs <- read.csv("Affairs.csv")
+summary(affairs)
+```
+
+## Data wrangling:
+
+```{r}
+affair <- subset(affairs, affairs > 0 & yearsmarried > 5)
+names(affair) <- c('#', 'Amount', 'Gender', 'Age', 'YrsMarried', 'Kids','Rate of Reli','YrsEduc','NumJobs','RateMarriage')
+affair
+```
+
+## Graphics:
+
+Histogram:
+
+```{r}
+hist(affair$Amount, main="Amount of Affairs", xlab="Affairs")
+```
+
+Scatter Plot:
+
+```{r}
+attach(affair)
+plot(RateMarriage,Amount, main="Do People With Perfect Marriages Cheat?",xlab="Rate", ylab="Amount Of Affairs")
+```
+
+BoxPlot:
+
+```{r}
+boxplot(Amount~YrsMarried, data=affair,
+  col=(c("blue","green")),
+  main="Years of Marriage Effect on Affairs Rate", xlab="Amount of Affairs", ylab="Years of Marriage")
+```
+
+## Conclusion
+
+The Data proved that there is no specific reason why people cheat in a relationship. Gender had no difference, and neither did the years of marriage. Some people rated their marriage 5.0/5.0 and still hit the maximum amount of affairs for the survey. People had kids and still cheated or was extremely religious and still cheated. Occupation also had no changing effect. Affairs are situation based, it truly depends on the mindset of someone. In conclusion the data collected was just for entertaining purposes because there was struggle to determine the relationship between the variables.
